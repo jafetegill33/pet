@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Idle Pet Tycoon — Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="web.css">
+  <meta name="theme-color" content="#ffffff">
+  <script type="importmap">
+  {
+    "imports": {
+      "mitt": "https://esm.sh/mitt@3.0.1"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Idle Pet</div>
+    <div class="economy">
+      <div class="coins">
+        <span class="coin">🪙</span>
+        <span id="coins">0</span>
+      </div>
+      <div class="rate" id="rate">+0/s</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="pet-card" id="petCard">
+      <img class="pet-emoji" id="petEmoji" src="pet_smile.png" alt="Your pet mood">
+      <div class="pet-name">
+        <span id="petName">Sprout</span>
+        <button id="renameBtn" class="icon-btn" aria-label="Rename">✎</button>
+      </div>
+      <div class="bars">
+        <div class="bar">
+          <span>Hunger</span>
+          <div class="bar-track"><div class="bar-fill" id="barHunger"><span class="bar-rate" id="rateHunger">+0.0/s</span></div></div>
+        </div>
+        <div class="bar">
+          <span>Happiness</span>
+          <div class="bar-track"><div class="bar-fill" id="barHappy"><span class="bar-rate" id="rateHappy">+0.0/s</span></div></div>
+        </div>
+        <div class="bar">
+          <span>Energy</span>
+          <div class="bar-track"><div class="bar-fill" id="barEnergy"><span class="bar-rate" id="rateEnergy">+0.0/s</span></div></div>
+        </div>
+        <div class="bar">
+          <span>Cleanliness</span>
+          <div class="bar-track"><div class="bar-fill" id="barClean"><span class="bar-rate" id="rateClean">+0.0/s</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button class="tab active" data-tab="care" role="tab" aria-selected="true">Care</button>
+      <button class="tab" data-tab="upgrades" role="tab" aria-selected="false">Upgrades</button>
+      <button class="tab" data-tab="stats" role="tab" aria-selected="false">Stats</button>
+    </nav>
+
+    <section id="tab-care" class="tab-panel active" role="tabpanel">
+      <div class="actions-grid">
+        <button id="tapBtn" class="primary-btn big">Tap for coins +<span id="tapValue">1</span></button>
+        <button id="feedBtn" class="secondary-btn">Feed 🍖</button>
+        <button id="playBtn" class="secondary-btn">Play 🎾</button>
+        <button id="napBtn" class="secondary-btn">Nap 💤</button>
+        <button id="cleanBtn" class="secondary-btn">Clean 🧼</button>
+      </div>
+      <p class="hint">Tip: Buy upgrades to automate care and earnings.</p>
+    </section>
+
+    <section id="tab-upgrades" class="tab-panel" role="tabpanel" aria-hidden="true">
+      <ul class="shop" id="shopList"></ul>
+    </section>
+
+    <section id="tab-stats" class="tab-panel" role="tabpanel" aria-hidden="true">
+      <div class="stats">
+        <div><strong>Level:</strong> <span id="level">1</span></div>
+        <div><strong>Coins (Current):</strong> <span id="coinsCurrent">0</span></div>
+        <div><strong>Total Coins Earned:</strong> <span id="coinsEarned">0</span></div>
+        <div><strong>Passive /s:</strong> <span id="passive">0</span></div>
+        <div><strong>Click Power:</strong> <span id="clickPower">1</span></div>
+        <div><strong>Time Played:</strong> <span id="timePlayed">0m</span></div>
+        <div><strong>Last Online:</strong> <span id="lastOnline">Now</span></div>
+      </div>
+      <div class="controls">
+        <button id="saveBtn" class="tertiary-btn">Save Now</button>
+        <button id="resetBtn" class="danger-btn">Adopt New Pet (Reset)</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="renameDialog">
+    <form method="dialog" class="dialog">
+      <label for="nameInput">Pet name</label>
+      <input id="nameInput" type="text" maxlength="16" placeholder="Your pet's name">
+      <menu class="dialog-actions">
+        <button value="cancel" class="tertiary-btn">Cancel</button>
+        <button id="renameConfirm" value="ok" class="primary-btn">Save</button>
+      </menu>
+    </form>
+  </dialog>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
